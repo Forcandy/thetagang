@@ -970,15 +970,15 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    Start([开始检查]) --> CalcBuyingPower[计算可用购买力<br/>NLV × margin_usage]
-    
+    Start([开始检查]) --> CalcBuyingPower["计算可用购买力<br/>NLV × margin_usage"]
+
     CalcBuyingPower --> ForEachSymbol[遍历每个标的<br/>按权重排序]
-    
-    ForEachSymbol --> CalcTarget[计算目标持仓<br/>target_shares = buying_power × weight / price]
-    
+
+    ForEachSymbol --> CalcTarget["计算目标持仓<br/>target_shares = buying_power × weight / price"]
+
     CalcTarget --> GetCurrent[获取当前持仓<br/>股票 + 期权 net positions]
-    
-    GetCurrent --> CalcGap{计算缺口<br/>target - current}
+
+    GetCurrent --> CalcGap{"计算缺口<br/>target - current"}
     
     CalcGap -->|缺口 <= 0| NextSymbol[下一个标的]
     CalcGap -->|缺口 > 0| CheckBuyOnly{是否<br/>buy_only_rebalancing?}
@@ -1010,9 +1010,9 @@ flowchart TB
     FilterCallStrike --> SelectContract
     
     SelectContract[选择最佳合约<br/>- 最接近目标 DTE<br/>- 最接近目标 Delta<br/>- 最高权利金]
-    
-    SelectContract --> CalcQty[计算合约数量<br/>min(缺口/100, max_new_contracts)]
-    
+
+    SelectContract --> CalcQty["计算合约数量<br/>min(缺口/100, max_new_contracts)"]
+
     CalcQty --> CheckMinCredit{权利金 >=<br/>minimum_credit?}
     CheckMinCredit -->|否| NextSymbol
     CheckMinCredit -->|是| CreateOrder
